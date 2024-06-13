@@ -26,18 +26,6 @@ async def download(url,filename = None):
             else:
                 print(f"Error URL not responding! - {response.status_code}")
 
-
-
-
-# async def main():
-#     # fchoice = input("if you wanna enter filename press (y/n):- ")
-#     # if fchoice == "y":
-#     #     url = input("Enter file url you want to download:- ")
-#     #     filename = input("Enter file name you wanna save:- ")
-#     #     download(url,filename)
-#     # elif fchoice == "n":
-#     #     url = input("Enter file url you want to download:- ")
-#     #     download(url)
 async def main():
     """Asynchronously downloads multiple files from user input URLs and filenames."""
     urls = []
