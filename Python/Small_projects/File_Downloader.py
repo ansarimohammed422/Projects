@@ -1,6 +1,8 @@
 import asyncio
 import aiohttp
 import aiofiles
+import plyer
+import os
 
 async def download(url,filename = None):
     print("downloading files")
@@ -15,6 +17,12 @@ async def download(url,filename = None):
                     async for chunk in response.content.iter_chunked(1024):
                         await f.write(chunk)
                 print(f"Downloading file:- {filename}")
+                plyer.notification.notify(
+                    title="Download Complete",
+                    message=f"{filename} downloaded successfully!",
+                    app_name="File Downloader",
+                    timeout=10  # Notification duration in seconds
+                )
             else:
                 print(f"Error URL not responding! - {response.status_code}")
 
@@ -35,18 +43,19 @@ async def main():
     urls = []
     filenames = []
 
-    print("Enter URLs to download. Type 'done' when you are finished.")
-    while True:
-        url = input("Enter URL: ")
-        if url.lower() == 'done':
-            break
-        use_default_filename = input("Do you want to use the default filename? (y/n): ").strip().lower()
-        if use_default_filename == 'n':
-            filename = input("Enter filename: ")
-        else:
-            filename = None
-        urls.append(url)
-        filenames.append(filename)
+    urls_input = input("Enter URLs separated by spaces: ")
+    filenames_input = input("Enter filenames separated by spaces (or leave blank for default filenames): ")
+
+    urls = urls_input.split()
+    filenames = filenames_input.split() if filenames_input else [None] * len(urls)
+
+    num_urls = len(urls)
+    num_filenames = len(filenames)
+
+    if num_filenames < num_urls:
+        filenames += [None] * (num_urls - num_filenames)
+    
+
 
     tasks = [download(url, filename) for url, filename in zip(urls, filenames)]
     await asyncio.gather(*tasks)  # Wait for all downloads to finish concurrently
