@@ -35,7 +35,7 @@ async def main(urls,filename):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Asynchronously Download Multiple Files")
     parser.add_argument("urls",nargs="+",help="Urls of multiple files to download")
-    parser.add_argument("-f","--filenames",nargs="+",help="File Names of files to download")
+    parser.add_argument("-f","--filenames",nargs="*",help="File Names of files to download")
 
     args = parser.parse_args()
 
