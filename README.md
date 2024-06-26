@@ -1,5 +1,3 @@
-Got it! Let's incorporate instructions for installing dependencies directly into the main `README.md` file of your project:
-
 ---
 
 # Asynchronous File Downloader
@@ -31,10 +29,8 @@ This Python script uses asyncio and aiohttp to asynchronously download multiple 
 3. Install dependencies using pip.
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements
    ```
-
-   This command installs all necessary Python packages listed in the `requirements.txt` file.
 
 ## Usage
 
@@ -68,5 +64,3 @@ Upon successful download of each file, a desktop notification will be displayed 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
-Make sure to replace placeholders like `your-username`, `your-repository`, `async_downloader.py`, and adjust example URLs and filenames according to your specific implementation. This README.md now includes clear instructions on how to clone the repository, install dependencies, and use the script effectively.
